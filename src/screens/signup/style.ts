@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     marginTop: 16,
     textAlign: "center",
   },
+  errorText: {
+    color: colors.red,
+    marginBottom: 8,
+  },
 });
 
 export default styles;
