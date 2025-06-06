@@ -1,5 +1,5 @@
-import 'react-native-url-polyfill/auto';
 import { ActivityIndicator, StatusBar, View } from "react-native";
+import 'react-native-url-polyfill/auto';
 import colors from "../constants/colors";
 
 export default function Index() {

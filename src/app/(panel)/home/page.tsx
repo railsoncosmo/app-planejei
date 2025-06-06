@@ -1,15 +1,10 @@
-import { View, Text } from "react-native";
+import HomeScreen from "@/src/app/modules/home/screens/panel";
+import useProfile from "@/src/app/modules/profile/hooks/useProfile";
 
 export default function Home() {
+  const { logout } = useProfile();
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text> Page Home </Text>
-    </View>
+    <HomeScreen/>
   );
 }
