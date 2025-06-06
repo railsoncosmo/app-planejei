@@ -29,6 +29,13 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontWeight: "500",
   },
+  detailsTravel: {
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: '500',
+    marginTop: 16,
+    marginBottom: 14,
+  },
 })
 
 export default styles;
