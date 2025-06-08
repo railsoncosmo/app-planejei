@@ -1,5 +1,5 @@
-import SignUpScreen from "@/src/app/modules/auth/screens/signup";
-import useSignup from "@/src/app/modules/auth/hooks/useSignup";
+import SignUpScreen from "@/src/modules/auth/screens/signup";
+import useSignup from "@/src/modules/auth/hooks/useSignup";
 
 export default function SignUp() {
   const { control, errors, handleSubmit, isSubmitting, onSubmit } = useSignup();

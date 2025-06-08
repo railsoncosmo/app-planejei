@@ -29,12 +29,31 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontWeight: "500",
   },
+  field: {
+    marginBottom: 12,
+  },
   detailsTravel: {
     color: colors.white,
     fontSize: 18,
     fontWeight: '500',
     marginTop: 16,
     marginBottom: 14,
+  },
+  button: {
+    backgroundColor: colors.orange,
+    padding: 12,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  labelError: {
+    color: colors.red,
+    marginTop: 3,
   },
 })
 

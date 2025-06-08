@@ -1,5 +1,5 @@
+import { authService } from "@/src/modules/auth/services/authService";
 import { router } from "expo-router";
-import { authService } from "@/src/services/authService";
 
 
 const useProfile = () => {

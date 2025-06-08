@@ -2,11 +2,17 @@ import { Header } from '@/src/shared/components/header';
 import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { SafeAreaView, StatusBar, View } from "react-native";
+import { Travel } from '@/src/shared/types/travel.type';
 
 import colors from "@/src/constants/colors";
 import styles from "./styles";
 
-export default function HomeScreen() {
+interface HomeScreenProps {
+  travels: Travel[];
+  loading: boolean;
+}
+
+export default function HomeScreen({ travels, loading }: HomeScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

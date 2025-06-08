@@ -1,5 +1,5 @@
-import useCreateTravel from '@/src/app/modules/travel/hooks/useCreateTravel';
-import NewTravelScreen from '@/src/app/modules/travel/new';
+import useCreateTravel from '@/src/modules/travel/hooks/useCreateTravel';
+import NewTravelScreen from '@/src/modules/travel/screens/newTravel';
 
 export default function NewTravel() {
   const { control, createNewTravel, errors, handleSubmit, isSubmitting } = useCreateTravel();

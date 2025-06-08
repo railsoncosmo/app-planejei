@@ -1,19 +1,9 @@
-import { useForm } from "react-hook-form";
-import { authService } from "@/src/services/authService";
-
+import { authService } from "@/src/modules/auth/services/authService";
+import { SignInFormData, signinSchema } from "@/src/shared/types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
-import { z } from "zod";
+import { useForm } from "react-hook-form";
 
-const signinSchema = z.object({
-  email: z
-    .string()
-    .email("Digite um e-mail válido.")
-    .min(1, "O e-mail é obrigatório."),
-  password: z.string().min(1, "A senha é obrigatória.").nonempty("A senha é obrigatória."),
-});
-
-export type SignInFormData = z.infer<typeof signinSchema>;
 
 const useSignin = () => {
   const {

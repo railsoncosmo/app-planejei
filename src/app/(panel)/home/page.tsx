@@ -1,10 +1,13 @@
-import HomeScreen from "@/src/app/modules/home/screens/panel";
-import useProfile from "@/src/app/modules/profile/hooks/useProfile";
+import HomeScreen from "@/src/modules/home/screens";
+import useTravel from "@/src/modules/travel/hooks/useTravel";
 
 export default function Home() {
-  const { logout } = useProfile();
+  const { travels, loading } = useTravel();
 
   return (
-    <HomeScreen/>
+    <HomeScreen
+      travels={travels}
+      loading={loading}
+    />
   );
 }

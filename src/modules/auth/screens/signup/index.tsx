@@ -1,5 +1,5 @@
-import { SignInFormData } from "@/src/app/modules/auth/hooks/useSignin";
 import colors from "@/src/constants/colors";
+import { SignUpFormData } from "@/src/shared/types/auth.type";
 import { Link } from "expo-router";
 import {
   Control,
@@ -8,7 +8,6 @@ import {
   UseFormHandleSubmit,
 } from "react-hook-form";
 import {
-  ActivityIndicator,
   Image,
   ScrollView,
   StatusBar,
@@ -19,21 +18,21 @@ import {
 } from "react-native";
 import styles from "./style";
 
-interface SignInScreenProps {
-  control: Control<SignInFormData>;
-  onSubmit: (data: SignInFormData) => Promise<void>;
-  handleSubmit: UseFormHandleSubmit<SignInFormData>;
+interface SignUpScreenProps {
+  control: Control<SignUpFormData>;
+  onSubmit: (data: SignUpFormData) => Promise<void>;
+  handleSubmit: UseFormHandleSubmit<SignUpFormData>;
   isSubmitting: boolean;
-  errors: FieldErrors<SignInFormData>;
+  errors: FieldErrors<SignUpFormData>;
 }
 
-export default function SignInScreen({
+export default function SignUpScreen({
   control,
   errors,
   handleSubmit,
   isSubmitting,
   onSubmit,
-}: SignInScreenProps) {
+}: SignUpScreenProps) {
   return (
     <ScrollView
       style={{ backgroundColor: colors.zinc }}
@@ -46,6 +45,27 @@ export default function SignInScreen({
         <Image
           style={styles.logo}
           source={require("@/assets/logo.png")}
+        />
+
+        <Controller
+          control={control}
+          name="username"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Nome completo"
+                placeholderTextColor={colors.gray50}
+                autoCapitalize="none"
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.username && (
+                <Text style={styles.errorText}>{errors.username?.message}</Text>
+              )}
+            </View>
+          )}
         />
 
         <Controller
@@ -76,10 +96,10 @@ export default function SignInScreen({
             <View>
               <TextInput
                 style={styles.input}
-                placeholder="*******"
-                secureTextEntry={true}
+                placeholder="Senha"
                 placeholderTextColor={colors.gray50}
                 autoCapitalize="none"
+                secureTextEntry={true}
                 value={value}
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -90,20 +110,39 @@ export default function SignInScreen({
             </View>
           )}
         />
+        <Controller
+          control={control}
+          name="confirmPassword"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Confirme a senha"
+                placeholderTextColor={colors.gray50}
+                autoCapitalize="none"
+                secureTextEntry={true}
+                value={value}
+                onBlur={onBlur}
+                onChangeText={onChange}
+              />
+              {errors.confirmPassword && (
+                <Text style={styles.errorText}>
+                  {errors.confirmPassword?.message}
+                </Text>
+              )}
+            </View>
+          )}
+        />
 
         <TouchableOpacity
-          style={styles.button}
           onPress={handleSubmit(onSubmit)}
+          style={styles.button}
         >
-          {isSubmitting ? (
-            <ActivityIndicator size={"small"} color={colors.zinc}/>
-          ) : (
-            <Text style={styles.buttonText}>Acessar conta</Text>
-          )}
+          <Text style={styles.buttonText}>Criar conta</Text>
         </TouchableOpacity>
 
-        <Link style={styles.link} href="/(auth)/signup/page">
-          Ainda não possuí uma conta? Cadastre-se
+        <Link style={styles.link} href="/(auth)/signin/page">
+          Já possuí uma conta? Faça o login
         </Link>
       </View>
     </ScrollView>
