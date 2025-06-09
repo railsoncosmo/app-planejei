@@ -1,8 +1,9 @@
 import { supabase } from '@/src/config/supabase';
-import { CreateTravelPayload } from '../../../shared/types/travel.type';
+import { CreateTravelPayload, Travel } from '../../../shared/types/travel.type';
 import { User } from '../../../shared/types/user.type';
 
 export const travelService = {
+  
   createTravel: async (payload: CreateTravelPayload, user_id: string | User) => {
     const { data, error } = await supabase.from("travels").insert([
       {
@@ -18,7 +19,7 @@ export const travelService = {
     return data;
   },
 
-  getTravels: async (user_id: string) => {
+  getTravels: async (user_id: string): Promise<Travel[]> => {
     const today = new Date().toISOString().split("T")[0];
     const { data, error } = await supabase.from("travels")
     .select('*')
@@ -30,6 +31,19 @@ export const travelService = {
       throw error;
     }
 
+    return data;
+  },
+
+  getTravelById: async (travel_id: string): Promise<Travel> => {
+    const { data, error } = await supabase.from("travels")
+    .select("*")
+    .eq("id", travel_id)
+    .single()
+
+    if(error){
+      throw error;
+    }
+    
     return data;
   }
 }

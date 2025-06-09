@@ -2,12 +2,21 @@ import { Header } from '@/src/shared/components/header';
 import { Travel } from '@/src/shared/types/travel.type';
 import { countDayTravel, formatDateRange } from '@/src/shared/utils/travelCount';
 import { Feather } from "@expo/vector-icons";
-import { Link } from "expo-router";
-import { ActivityIndicator, SafeAreaView, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { Link, useRouter } from "expo-router";
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 
 import colors from "@/src/constants/colors";
-import styles from "./styles";
+import { CardTravel } from '@/src/modules/home/components/CardTravel';
 import { TravelEmpty } from '@/src/shared/components/travelEmpty';
+import styles from "./styles";
 
 interface HomeScreenProps {
   travels: Travel[];
@@ -15,7 +24,9 @@ interface HomeScreenProps {
 }
 
 export default function HomeScreen({ travels, loading }: HomeScreenProps) {
-  
+  const router = useRouter();
+  const [nextTravel, ...otherTravels] = travels;
+
   if(loading){
     return (
       <View style={styles.initialLoading}>
@@ -24,7 +35,6 @@ export default function HomeScreen({ travels, loading }: HomeScreenProps) {
     )
   }
   
-  const [nextTravel, ...otherTravels] = travels;
 
   if (!nextTravel) {
     return (
@@ -55,7 +65,7 @@ export default function HomeScreen({ travels, loading }: HomeScreenProps) {
             <Link
               href={'/(panel)/travel/new/page'}
               style={[styles.buttonAdd, { backgroundColor: colors.orange }]}
-              >
+            >
               <Feather name='plus' size={30} color={colors.white} />
             </Link>
         </View>
@@ -68,10 +78,25 @@ export default function HomeScreen({ travels, loading }: HomeScreenProps) {
             <TouchableOpacity
               style={styles.highlightButton}
               activeOpacity={1}
+              onPress={() => router.push(`/(panel)/detail/${nextTravel.id}`)}
             >
               <Text style={styles.highlightButtonText}>Acessar detalhes</Text>
             </TouchableOpacity>
           </View>
+        )}
+
+        {otherTravels.length > 0 && (
+          <>
+          <Text style={styles.subtitle}>Outras viagens</Text>
+          <FlatList
+            data={otherTravels}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) => (
+              <CardTravel data={item}/>
+            )}
+          />
+          </>
         )}
       </View>
     </SafeAreaView>

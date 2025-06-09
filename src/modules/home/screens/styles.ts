@@ -68,6 +68,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+  subtitle: {
+    color: colors.white,
+    fontSize: 18,
+    fontWeight: '600',
+    marginTop: 14,
+    marginBottom: 8,
+  },
 });
 
 export default styles;

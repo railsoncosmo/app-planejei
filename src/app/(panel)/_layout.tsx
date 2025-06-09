@@ -17,6 +17,12 @@ export default function PanelLayout(){
         name="travel/new/page"
         options={{ headerShown: false}}
       />
-    </Stack>
+
+      <Stack.Screen
+        name="detail/[id]"
+        options={{ headerShown: false}}
+      />
+
+      </Stack>
   )
 }

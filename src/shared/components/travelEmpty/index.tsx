@@ -1,8 +1,8 @@
-import { SafeAreaView, View, Text, StatusBar } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { Header } from "@/src/shared/components/header";;
-import { Link } from "expo-router";
 import colors from "@/src/constants/colors";
+import { Header } from "@/src/shared/components/header";
+import { Feather } from "@expo/vector-icons";
+import { Link } from "expo-router";
+import { SafeAreaView, StatusBar, Text, View } from "react-native";
 import styles from "../../../modules/home/screens/styles";
 
 const TravelEmpty = () => {
@@ -10,7 +10,7 @@ const TravelEmpty = () => {
     <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <StatusBar backgroundColor={colors.zinc} barStyle={"light-content"} />
-          <View style={styles.contentHeader}>
+        <View style={styles.contentHeader}>
           <Header/>
           <View style={styles.contentLinks}>
             <Link
@@ -29,7 +29,7 @@ const TravelEmpty = () => {
         </View>
       </View>
       <View style={styles.highlightCard}>
-        <Text style={styles.highlightText}>Nenhuma viagem programada.</Text>
+          <Text style={styles.highlightText}>Nenhuma viagem programada.</Text>
       </View>
         </View>
       </SafeAreaView>
@@ -37,3 +37,4 @@ const TravelEmpty = () => {
 }
 
 export { TravelEmpty };
+
