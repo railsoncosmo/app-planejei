@@ -16,6 +16,7 @@ export interface Travel {
   hotel_address: string;
   start_date: string;
   end_date: string;
+  created_at: string;
 }
 
 export const travelScheme = z.object({

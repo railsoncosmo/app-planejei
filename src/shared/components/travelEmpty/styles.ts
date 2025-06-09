@@ -46,28 +46,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 4,
   },
-  rangeText: {
-    color: colors.gray,
-  },
-  highlightCity: {
-    color: colors.zinc,
-    fontWeight: '600',
-    fontSize: 18,
-    marginTop: 14,
-    marginBottom: 14,
-  },
-  highlightButton: {
-    backgroundColor: colors.orange,
-    padding: 8,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  highlightButtonText: {
-    color: colors.white,
-    fontSize: 16,
-    fontWeight: '500',
-  },
 });
 
 export default styles;
