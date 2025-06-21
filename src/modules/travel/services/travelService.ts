@@ -34,7 +34,7 @@ export const travelService = {
     return data;
   },
 
-  getTravelById: async (travel_id: string): Promise<Travel> => {
+  getTravelById: async (travel_id: string): Promise<Travel | null> => {
     const { data, error } = await supabase.from("travels")
     .select("*")
     .eq("id", travel_id)
@@ -45,5 +45,14 @@ export const travelService = {
     }
     
     return data;
+  },
+
+  deleteTravelById: async (travel_id: string): Promise<void> => {
+    const { error } = await supabase.from("travels").delete()
+    .eq("id", travel_id);
+
+    if(error){
+      throw error;
+    }
   }
 }

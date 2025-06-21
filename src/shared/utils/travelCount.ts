@@ -1,8 +1,7 @@
 import { 
 format,
 parseISO,
-isBefore, 
-endOfDay, 
+isBefore,
 differenceInCalendarDays, 
 isWithinInterval 
 } from 'date-fns';
@@ -31,4 +30,8 @@ export const formatDateRange = (start: string, end: string) => {
   let formatEndDate = format(parseISO(end), "dd MMMM yyyy", { locale: ptBR })
 
   return `${formatStartDate} até ${formatEndDate}`
+}
+
+export const formatedDate = (date: string) => {
+  return format(parseISO(date), "dd MMMM yyyy", { locale: ptBR })
 }
