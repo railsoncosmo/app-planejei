@@ -7,14 +7,28 @@ import { formatedDate } from "@/src/shared/utils/travelCount";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import styles from "./styles";
+import { Reminder } from "@/src/shared/types/reminder.type";
 
 interface TravelDetailsScreenProps {
   travel: Travel | null;
   loading: boolean;
   handleDeleteTravel: () => Promise<void>;
+  remindersHook: {
+    loading: boolean;
+    newReminder: string;
+    setNewReminder: (value: string) => void;
+    addReminder: () => Promise<void>;
+    reminders: Reminder[];
+    deleteReminder: (reminder_id: string) => Promise<void>;
+  }
 }
 
-export default function DetailTravelScreen({ travel, loading, handleDeleteTravel }: TravelDetailsScreenProps){
+export default function DetailTravelScreen({ 
+  travel, 
+  loading, 
+  handleDeleteTravel,
+  remindersHook,
+}: TravelDetailsScreenProps){
   
   if(loading || !travel){
     return (
@@ -76,19 +90,30 @@ export default function DetailTravelScreen({ travel, loading, handleDeleteTravel
               style={styles.reminderInput}
               placeholder="Adicione um lembrete"
               placeholderTextColor={colors.gray100}
+              value={remindersHook.newReminder}
+              onChangeText={(value) => remindersHook.setNewReminder(value)}
             />
-            <Pressable style={styles.addButton}>
+            <Pressable 
+              style={styles.addButton}
+              onPress={async () => await remindersHook.addReminder()}  
+            >
               <Text style={{ color: colors.white, fontSize: 18 }}>+</Text>
             </Pressable>
           </View>
 
           <View style={styles.spacingVertical}>
-            <View style={styles.reminderItem}>
-              <Text style={styles.reminderText}>Lembrar de pegar a chave da casa</Text>
-              <Pressable>
+            {remindersHook.reminders.map((item) => (
+              <View style={styles.reminderItem} key={item.id}>
+                <Text style={styles.reminderText}>
+                  {item.description}
+                </Text>
+              <Pressable
+                onPress={async () => await remindersHook.deleteReminder(item.id)}
+              >
                 <Feather name="trash" size={25} color={colors.red}/>
               </Pressable>
             </View>
+            ))}
           </View>
 
 

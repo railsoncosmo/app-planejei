@@ -8,7 +8,7 @@ export interface CreateTravelPayload {
   end_date: string;
 }
 
-export interface Travel {
+export type Travel = {
   id: string;
   user_id: string;
   title: string;
