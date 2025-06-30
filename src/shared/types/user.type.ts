@@ -1,7 +1,8 @@
 
 export type User = {
-  id: string;
+  id?: string;
+  email: string;
   name: string;
-  image: string;
-  created_at: string;
+  image?: string;
+  createdAt: string;
 }
